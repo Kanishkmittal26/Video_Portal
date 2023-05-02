@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="files/apple-touch-icon.png">
+    <title>Videoclub</title>
+
+    <link rel="stylesheet" href="../../fonts.googleapis.com/icone91f.css?family=Material+Icons">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/loaders.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+
+    <script>
+
+        let searchResults 
+        async function search() {
+            
+            let searchText = document.getElementById("searchText")
+            searchText = searchText.value
+
+            window.location.href = `/search.html#${searchText}`
+
+
+            
+        }
+
+    </script>
+
+
+    <!-- navbar -->
+
+
+    <div class="navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col s3">
+                    <div class="content-left">
+                        <a href="#slide-out" data-activates="slide-out" class="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <div class="content-center">
+                        <a href="index.html">
+                            <h1>VideoClub</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="col s3">
+                    <div class="content-right">
+                        <a href="#slide-out-right" data-activates="slide-out-right" class="sidebar-search">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end navbar -->
+
+
+   <!-- sidebar Start -->
+
+
+   <div class="sidebar-panel">
+    <ul id="slide-out" class="collapsible side-nav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <!-- <img src="images/bg-banner.jpg" alt=""> -->
+                </div>
+                <img class="circle responsive-img" src="files/guestProfile.png" alt="">
+                <span class="white-text name">Guest User</span>
+            </div>
+        </li>
+
+         
+        <li>
+            <a href="index.html">
+                <i class="fa fa-home"></i>Club Home</a>
+        </li>
+
+        <li>
+            <a href="categories.html">
+                <i class="fa fa-list"></i>Club Categories</a>
+        </li>
+
+        <li>
+            <div class="collapsible-header">
+                <i class="fa fa-play-circle-o" aria-hidden="true"></i>Random Videos
+                <span>
+                    <i class="fa fa-caret-right right"></i>
+                </span>
+            </div>
+            <div class="collapsible-body">
+                <ul>
+                    <li>
+                        <a href="random_video1.html">Random Video 1</a>
+                    </li>
+                    <li>
+                        <a href="random_video2.html">Random Video 2</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        
+        <li>
+            <a href="channel.html">
+                <i class="fa fa-user"></i>Your Club Channel</a>
+        </li>
+
+        <li>
+            <a href="about.html">
+                <i class="fa fa-coffee" aria-hidden="true"></i>About VideoClub</a>
+        </li>
+
+        <li>
+            <a href="contact.html">
+                <i class="fa fa-envelope-o"></i>Contact Us</a>
+        </li>
+        <li>
+            <a href="sign-in.html">
+                <i class="fa fa-sign-in"></i>Sign In</a>
+        </li>
+        <li>
+            <a href="sign-up.html">
+                <i class="fa fa-user-plus"></i>Sign Up</a>
+        </li>
+        <li>
+            <a href="index.html">
+                <i class="fa fa-share"></i>Log Out</a>
+        </li>
+    </ul>
+</div>
+
+<!-- sidebar End -->
+
+
+<!-- searchbar Start -->
+    
+    
+<div class="sidebar-panel sidebar-search">
+    <ul id="slide-out-right" class="collapsible side-nav">
+        <li>
+            <div class="form">
+                <input type="search" id="searchText">
+                <button class="button" onclick="search()">
+
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            <div class="clear"></div>
+
+        </li>
+
+
+        <li>
+            <h5><i class="fa fa-bolt" aria-hidden="true"></i> Recent Searches</h5>
+        </li>
+
+        <li id="search">
+
+        </li>
+
+
+        <script>
+
+            async function api() {
+
+                let myObject = await fetch(
+                    'http://videoclub.co.in/api/recentsearches/limit/20'
+                );
+
+                let myobj0 = await myObject.json();
+                console.log(myobj0);
+                myobj = myobj0.queries
+                console.log(myobj);
+
+
+                let html = '';
+
+              
+                for (let i = 0; i < myobj.length; i++) {
+
+
+
+                    html += `<li>
+            <a href="${i}">${myobj[i]}</a>
+        </li>`
+
+
+
+
+                }
+
+
+                document.getElementById("search").innerHTML = html
+
+
+
+            }
+
+
+            api()
+
+        </script>
+
+    </ul>
+</div>
+
+
+<!-- searchbar End -->
+
+
+
+    <!-- categories -->
+
+    
+    <div class="categories segments-page">
+        <div class="container">
+            <div class="pages-title">
+                <h3>Club Categories</h3>
+            </div>
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header text-bold active">
+                        <i class="fa fa-camera-retro" aria-hidden="true"></i>Bollywood Gossip
+                    </div>
+                    <div class="collapsible-body">
+
+                        <ul>
+
+                            <li>
+                                <a href="Bollywood_Gossip_Page.html">Latest</a>
+                            </li>
+                            <li>
+                                <a href="Bollywood_Gossip_Page.html">Top</a>
+                            </li>
+                            <li>
+                                <a href="Bollywood_Gossip_Page.html">Trending</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="collapsible-header text-bold">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        Bollywood Interviews
+                    </div>
+                    <div class="collapsible-body">
+
+                        <ul>
+
+                            <li>
+                                <a href="Bollywood_Interviews_Page.html">Latest</a>
+                            </li>
+                            <li>
+                                <a href="Bollywood_Interviews_Page.html">Top</a>
+                            </li>
+                            <li>
+                                <a href="Bollywood_Interviews_Page.html">Trending</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header text-bold">
+                        <i class="fa fa-star-half-o" aria-hidden="true"></i></i>Movies Review
+                    </div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="Movie_Review_Page.html">Comedy</a>
+                            </li>
+                            <li>
+                                <a href="Movie_Review_Page.html">Thriller</a>
+                            </li>
+                            <li>
+                                <a href="Movie_Review_Page.html">Suspense</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header text-bold">
+                       <i class="fa fa-television" aria-hidden="true"></i>Television Gossip
+                    </div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="Television_Gossips_Page.html">Action</a>
+                            </li>
+                            <li>
+                                <a href="Television_Gossips_Page.html">Adventure</a>
+                            </li>
+                            <li>
+                                <a href="Television_Gossips_Page.html">Strategy</a>
+                            </li>
+                            <li>
+                                <a href="Television_Gossips_Page.html">Sport</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="collapsible-header text-bold">
+                        <i class="fa fa-map-o" aria-hidden="true"></i>Wallpaper
+                    </div>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="Wallpaper_Page.html">Action</a>
+                            </li>
+                            <li>
+                                <a href="Wallpaper_Page.html">Adventure</a>
+                            </li>
+                            <li>
+                                <a href="Wallpaper_Page.html">Strategy</a>
+                            </li>
+                            <li>
+                                <a href="Wallpaper_Page.html">Sport</a>
+                            </li>
+                            <li>
+                                <a href="Wallpaper_Page.html">Simulation</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- end categories -->
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
